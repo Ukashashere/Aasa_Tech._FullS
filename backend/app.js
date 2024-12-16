@@ -17,6 +17,12 @@ app.use('/auth', authRoutes);
 app.use('/weather', weatherRoutes);
 app.use('/report', reportRoutes);
 
+//Default Route
+app.get('/', (req, res) => {
+    res.send('Backend is running!');
+});
+
+
 // Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
