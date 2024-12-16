@@ -1,15 +1,43 @@
+/**
+ * @swagger
+ * tags:
+ *   name: Weather
+ *   description: Weather search routes
+ */
+
 const express = require('express');
 const axios = require('axios');
 const db = require('../models/db');
 const auth = require('../middleware/auth');
 const router = express.Router();
 
-// Get Weather
+/**
+ * @swagger
+ * /weather/{city}:
+ *   get:
+ *     summary: Get current weather for a city
+ *     tags: [Weather]
+ *     parameters:
+ *       - in: path
+ *         name: city
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Name of the city
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Weather data retrieved successfully
+ *       404:
+ *         description: Weather data not found
+ *       500:
+ *         description: Error fetching weather data
+ */
 router.get('/:city', auth, async (req, res) => {
     const city = req.params.city;
 
     try {
-        // Fetch weather data
         const response = await axios.get(`http://api.weatherstack.com/current`, {
             params: {
                 access_key: process.env.WEATHERSTACK_API_KEY,
@@ -23,7 +51,6 @@ router.get('/:city', auth, async (req, res) => {
             return res.status(404).json({ error: 'Weather data not found' });
         }
 
-        // Save search to database
         await db.query(
             'INSERT INTO search_logs (user_id, city, weather_data) VALUES (?, ?, ?)',
             [req.userId, city, JSON.stringify(weatherData)]
