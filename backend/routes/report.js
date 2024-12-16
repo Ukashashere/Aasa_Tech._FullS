@@ -27,7 +27,21 @@ const router = express.Router();
 router.get('/', auth, async (req, res) => {
     try {
         const [logs] = await db.query(
-            'SELECT city, weather_data, timestamp FROM search_logs WHERE user_id = ? ORDER BY timestamp DESC',
+            `SELECT 
+                u.username, 
+                s.city, 
+                s.weather_data, 
+                s.timestamp 
+             FROM 
+                search_logs s 
+             JOIN 
+                users u 
+             ON 
+                s.user_id = u.id
+             WHERE 
+                s.user_id = ? 
+             ORDER BY 
+                s.timestamp DESC`,
             [req.userId]
         );
         res.json(logs);
