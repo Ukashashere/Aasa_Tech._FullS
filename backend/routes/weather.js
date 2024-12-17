@@ -36,16 +36,21 @@ const router = express.Router();
  */
 router.get('/:city', auth, async (req, res) => {
     const city = req.params.city;
-    console.log('City:', city);
-    console.log('Weather API Response:', response.data);
-
+    
     try {
+
+        // Log karne ke liye city for debugging
+        console.log('City:', city);
+
         const response = await axios.get(`https://api.weatherstack.com/current`, {
             params: {
                 access_key: process.env.WEATHERSTACK_API_KEY,
                 query: city,
             },
         });
+
+        // Log karne ke liye weather API response
+        console.log('Weather API Response:', response.data);
 
         const weatherData = response.data;
 
