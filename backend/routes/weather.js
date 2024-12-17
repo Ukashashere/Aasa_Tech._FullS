@@ -36,9 +36,11 @@ const router = express.Router();
  */
 router.get('/:city', auth, async (req, res) => {
     const city = req.params.city;
+    console.log('City:', city);
+    console.log('Weather API Response:', response.data);
 
     try {
-        const response = await axios.get(`http://api.weatherstack.com/current`, {
+        const response = await axios.get(`https://api.weatherstack.com/current`, {
             params: {
                 access_key: process.env.WEATHERSTACK_API_KEY,
                 query: city,
@@ -48,7 +50,7 @@ router.get('/:city', auth, async (req, res) => {
         const weatherData = response.data;
 
         if (!weatherData || !weatherData.current) {
-            return res.status(404).json({ error: 'Weather data not found' });
+            return res.status(404).json({ error: 'Weather data not found for the provided city' });
         }
 
         await db.query(
@@ -58,8 +60,10 @@ router.get('/:city', auth, async (req, res) => {
 
         res.json(weatherData);
     } catch (error) {
+        console.error('Weather API Error:', error.response?.data || error.message);
         res.status(500).json({ error: 'Unable to fetch weather data' });
     }
 });
 
 module.exports = router;
+
