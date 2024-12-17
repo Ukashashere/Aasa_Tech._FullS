@@ -35,11 +35,11 @@ const router = express.Router();
  *         description: Username already exists
  */
 router.post('/signup', async (req, res) => {
-    const { username, password } = req.body;
+    const { username, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
 
     try {
-        await db.query('INSERT INTO users (username, password) VALUES (?, ?)', [username, hashedPassword]);
+        await db.query('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', [username, email, hashedPassword]);
         res.status(201).json({ message: 'User created' });
     } catch (error) {
         res.status(400).json({ error: 'Username already exists' });
@@ -72,10 +72,10 @@ router.post('/signup', async (req, res) => {
  *         description: User not found
  */
 router.post('/login', async (req, res) => {
-    const { username, password } = req.body;
+    const { usernameOrEmail, password } = req.body;
 
     try {
-        const [users] = await db.query('SELECT * FROM users WHERE username = ?', [username]);
+        const [users] = await db.query('SELECT * FROM users WHERE username = ? OR email = ?', [usernameOrEmail, usernameOrEmail]);
         if (users.length === 0) return res.status(404).json({ error: 'User not found' });
 
         const user = users[0];

@@ -16,3 +16,5 @@ CREATE TABLE search_logs (
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+ALTER TABLE users ADD email VARCHAR(100) UNIQUE NOT NULL AFTER username;
