@@ -26,6 +26,8 @@ const router = express.Router();
  *             properties:
  *               username:
  *                 type: string
+ *               email:
+ *                 type: string
  *               password:
  *                 type: string
  *     responses:
@@ -59,7 +61,7 @@ router.post('/signup', async (req, res) => {
  *           schema:
  *             type: object
  *             properties:
- *               username:
+ *               username Or Email:
  *                 type: string
  *               password:
  *                 type: string
