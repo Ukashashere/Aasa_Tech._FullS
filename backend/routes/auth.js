@@ -61,7 +61,7 @@ router.post('/signup', async (req, res) => {
  *           schema:
  *             type: object
  *             properties:
- *               username Or Email:
+ *               usernameOrEmail:
  *                 type: string
  *               password:
  *                 type: string
