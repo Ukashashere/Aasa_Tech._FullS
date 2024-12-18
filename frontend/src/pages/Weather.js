@@ -4,13 +4,13 @@ import axios from 'axios';
 function Weather() {
     const [city, setCity] = useState('');
     const [weather, setWeather] = useState(null);
-    console.log(`Requesting: ${process.env.REACT_APP_API_URL}/weather/${encodedCity}`);
 
     const handleSearch = async (e) => {
         e.preventDefault();
         try {
             const token = localStorage.getItem('token');
             const encodedCity = encodeURIComponent(city.trim()); // Sanitize input
+            console.log(`Requesting: ${process.env.REACT_APP_API_URL}/weather/${encodedCity}`);
             const response = await axios.get(`${process.env.REACT_APP_API_URL}/weather/${city}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
