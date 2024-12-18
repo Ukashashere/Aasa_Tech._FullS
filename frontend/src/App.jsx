@@ -1,9 +1,9 @@
 import './App.scss';
-import Home from './Components/Home';     /*Import, Here we have imported things*/
-import Footer from './Components/Footer';
-import Book_Appointment from './Components/Book_Appointment';
-import HowItWorks from './Components/HowItWorks';
-import Navbar from './Components/Navbar';
+import Home from './components/Home';     /*Import, Here we have imported things*/
+import Footer from './components/Footer';
+import Book_Appointment from './components/Book_Appointment';
+import HowItWorks from './components/HowItWorks';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
