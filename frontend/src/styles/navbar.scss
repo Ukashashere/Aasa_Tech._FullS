@@ -1,0 +1,138 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+
+    img {
+      height: 40px;
+      margin-right: 10px; /* Space between logo and text */
+    }
+
+    span {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+  }
+
+  .navbar-links button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #666;
+    text-decoration: none;
+  }
+  
+  .navbar-links button:hover {
+    color: #333;
+    text-decoration: underline;
+  }  
+
+  .navbar-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 20px;
+
+    li {
+      position: relative; /* For dropdown positioning */
+      cursor: pointer;
+      font-size: 16px;
+      color: #666;
+      padding: 0 5px;
+
+      &:hover {
+        color: #333;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+
+        &:hover {
+          color: #333;
+        }
+      }
+    }
+
+    .divider {
+      height: 20px; /* Height of the divider */
+      width: 1px; /* Thickness of the line */
+      background-color: #ccc;
+      margin: 0 10px; /* Spacing around the divider */
+    }
+
+    .dropdown {
+      cursor: pointer;
+
+      &:hover .dropdown-menu {
+        display: block; /* Show the dropdown menu on hover */
+      }
+
+      .dropdown-menu {
+        display: none; /* Hidden by default */
+        position: absolute;
+        top: 100%; /* Position below the "Login/Signup" text */
+        left: 0;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        z-index: 1000;
+        list-style: none;
+        padding: 10px 0;
+
+        li {
+          padding: 8px 20px;
+          white-space: nowrap;
+
+          &:hover {
+            background-color: #f5f5f5;
+          }
+
+          a {
+            text-decoration: none;
+            color: #666;
+
+            &:hover {
+              color: #333;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 20px;
+
+    .navbar-links {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+
+      .divider {
+        display: none; /* Hide dividers on smaller screens */
+      }
+
+      .dropdown-menu {
+        position: relative; /* Adjust dropdown for smaller screens */
+        top: auto;
+        left: auto;
+        box-shadow: none;
+      }
+    }
+  }
+}
