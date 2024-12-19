@@ -76,7 +76,7 @@
 /* Search Bar */
 .search-bar {
   position: absolute;
-  bottom: 100px;
+  bottom: 150px;
   width: 35.5%;
   height: 92px;
   display: flex;
@@ -87,10 +87,7 @@
   transform: skewY(2deg);   /*works on Chrome, Edge */
   -ms-transform: skewY(2deg);       /* IE */
   -webkit-transform: skewY(2deg);   /* Safari */
-  background-image: conic-gradient(
-    #3edf4b,
-    #fff020,
-  );
+  background:rgb(116, 185, 209);
   border-radius: 15px;
 }
 
@@ -114,7 +111,7 @@
   height: 60px;
   margin-top: 17px;
   margin-left: 11px;
-  background: white;
+  background:white;
 }
 
 .input-third {
@@ -223,7 +220,7 @@ span {                          /*Text Linear Color, in place of Solid color*/
   padding: 10px 20px;
   border-radius: 5px;
   border: 1px solid #ccc;             /*Linear Color, in place of Solid color*/
-  background-image: linear-gradient(43deg, #0CB9B3 0%, #1173B3 100%);
+  background-image: linear-gradient(43deg, #840dbf 0%, #1173B3 100%);
   color: white;
   cursor: pointer;
   height: 60px;
@@ -231,6 +228,10 @@ span {                          /*Text Linear Color, in place of Solid color*/
   margin-top: 17px;
   margin-left: 12px;
   border-radius: 10px;
+}
+
+.button-wrap:hover {
+  background-image: linear-gradient(43deg, #1173B3 0%, #840dbf 100%);;
 }
 
 .button-icon-wrap {
