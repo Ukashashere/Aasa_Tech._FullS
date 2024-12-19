@@ -54,15 +54,7 @@ nav img {
 .primary-button {
   padding: 0.9rem 1.75rem;
   color:white;
-  background-image: conic-gradient(
-    #fd00ca,
-    #b102b7,
-    #3363ff,
-    #3edf4b,
-    #fff020,
-    #fe9000,
-    #fd6100
-  );
+  background-image: linear-gradient(43deg, #840dbf 0%, #1173B3 100%);
   transition: 3s;
   outline: none;
   border: none;
@@ -80,15 +72,7 @@ nav img {
 }
 
 .primary-button:hover {
-  background-image:conic-gradient(
-    #fd6100,
-    #fe9000,
-    #fff020,
-    #3edf4b,
-    #3363ff,
-    #b102b7,
-    #fd00ca
-  );
+  background-image: linear-gradient(43deg, #1173B3 0%, #840dbf 100%);
 }
 .navbar-menu-container svg {
   font-size: 1.5rem;
