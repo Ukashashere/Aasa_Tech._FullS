@@ -1,5 +1,9 @@
 # Aasa Tech. Weather App 🌦️
 ## It is a Front and Backend Integrated App.😊💻🚀
+## Frontend Landing Page:
+![image](https://github.com/user-attachments/assets/a97e1481-f859-4fd2-b967-f14383d34eee)
+## .
+
 ## Backend FastAPI structure:
 ![Screenshot (1198)](https://github.com/user-attachments/assets/320c1a9d-93a8-4790-88a7-71238d2db7df)
 ## .
