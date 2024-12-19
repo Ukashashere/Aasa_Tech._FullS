@@ -14,7 +14,7 @@
 .image-container {
   display: flex;
   justify-content: space-between; /* Makes sure the columns are side by side */
-  gap: 20px; /* Add some gap between the two columns */
+  gap: 0px; /* Add some gap between the two columns */
   width: 50%; /* Make sure the image container takes up 55% of the Book_Appointment section */
   position: relative;
   z-index: 1; /* Ensure images are above the background */
