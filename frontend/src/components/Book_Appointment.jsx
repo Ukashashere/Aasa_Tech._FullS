@@ -64,19 +64,9 @@ const Book_Appointment = () => {
 
       {/* Search Bar */}
       <div className="search-bar">
-        <div className="input-first">               {/* Ye Search Waala Icon and Input */}
-          <IconInput type="text"  placeholder= "    Condition, procedure, specialty...">
-            <BsSearch />
-          </IconInput>
-        </div>
         <div className="input-second">               {/* Location Walla Icon and Input */}
-          <IconInput type="text" placeholder="   City, state, zipcode">
+          <IconInput type="text" placeholder="  City, state, zipcode..">
             <IoLocationSharp />
-          </IconInput>
-        </div>
-        <div className="input-third">               {/* Card Icon and Input */}
-          <IconInput type="text" placeholder="   Insurance carrier">
-            <LiaAddressCardSolid />
           </IconInput>
         </div>
         <div>
