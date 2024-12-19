@@ -26,9 +26,9 @@ const Footer = () => {
         </div>
         <div className="footer-section-columns">
           <span>+91-88473-56497</span>
-          <span>hello@ProVital.com</span>
-          <span>press@ProVital.com</span>
-          <span>contact@ProVital.com</span>
+          <span>hello@Aasatech.com</span>
+          <span>press@Aasatech.com</span>
+          <span>contact@Aasatech.com</span>
         </div>
         <div className="footer-section-columns">
           <span>Terms & Conditions</span>
