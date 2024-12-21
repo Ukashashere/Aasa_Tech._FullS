@@ -57,7 +57,7 @@ const Book_Appointment = () => {
 
       {/* Right Side: "Book an appointment" Text */}
       <div className="Book_Appointment-text">
-        <h1>Get your Weather Forcast<span> anywhere anytime!</span></h1>
+        <h1>Get your Weather Forcast<span> anytime anywhere!</span></h1>
         <p>Weather Forcast, Rain Prediction, AQI at your fingertips.</p>
       </div>
 
