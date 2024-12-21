@@ -5,9 +5,9 @@
 ## .
 ![Screenshot (1232)](https://github.com/user-attachments/assets/870a001d-5a89-43f6-ab67-8a908e17c2e7)
 ## Login Feature:
-![Screenshot (1234)](https://github.com/user-attachments/assets/32330b38-fddc-49b3-8258-45e42d8f0bd7)
+![image](https://github.com/user-attachments/assets/8d1b51d8-43f5-4c7f-abdc-04372bd3951c)
 ## Signup Feature:
-![image](https://github.com/user-attachments/assets/3dead085-3c76-4553-901a-f71f7081dc4f)
+![Screenshot (1236)](https://github.com/user-attachments/assets/99052e53-0b77-4349-ba11-5844b0fc9d36)
 ## Backend FastAPI structure:
 ![Screenshot (1198)](https://github.com/user-attachments/assets/320c1a9d-93a8-4790-88a7-71238d2db7df)
 ## .
