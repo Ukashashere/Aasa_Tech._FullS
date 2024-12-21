@@ -4,10 +4,18 @@ import Footer from './components/Footer';
 import Book_Appointment from './components/Book_Appointment';
 import HowItWorks from './components/HowItWorks';
 import Navbar from './components/Navbar';
+import LoginSignupPopup from "./components/LoginSignupPopup";
+import React, { useState } from "react";
+
 
 function App() {
+  const [showPopup, setShowPopup] = useState(true);
+  const closePopup = () => {
+    setShowPopup(false);
+  };  
   return (
     <div className="App">
+      {showPopup && <LoginSignupPopup onClose={closePopup} />}
       <Navbar />
       <Book_Appointment />
       <Home />         {/*Render, Here we have rendered the imported things*/}
