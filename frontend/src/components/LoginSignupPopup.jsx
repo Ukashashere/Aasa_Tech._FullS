@@ -87,6 +87,12 @@ const ToggleLink = styled.p`
   }
 `;
 
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 0.9rem;
+  text-align: center;
+`;
+
 const LoginSignupPopup = ({ onClose }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({ email: "", password: "", name: "" });
@@ -101,10 +107,6 @@ const LoginSignupPopup = ({ onClose }) => {
     setIsLogin(!isLogin);
     setFormData({ email: "", password: "", name: "" });
     setErrorMessage("");
-  };  
-
-  const toggleForm = () => {
-    setIsLogin((prev) => !prev);
   };
 
   const handleSubmit = async (e) => {
@@ -146,25 +148,46 @@ const LoginSignupPopup = ({ onClose }) => {
         <Title>{isLogin ? "Welcome Back!" : "Create an Account"}</Title>
         <Form onSubmit={handleSubmit}>
           {!isLogin && (
-            <input type="text" placeholder="Username" required />
+            <input
+              type="text"
+              name="name"
+              placeholder="Username"
+              value={formData.name}
+              onChange={handleInputChange}
+              required
+            />
           )}
-          <input type="email" placeholder="Email Address" required />
-          <input type="password" placeholder="Password" required />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            value={formData.email}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleInputChange}
+            required
+          />
+          {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
           <button type="submit">{isLogin ? "Login" : "Sign Up"}</button>
         </Form>
         <ToggleLink>
           {isLogin ? (
             <>
-              Don't have an account?{" "}
-              <span onClick={toggleForm}>Sign up</span>
+              Don't have an account? <span onClick={toggleMode}>Sign up</span>
             </>
           ) : (
             <>
-              Already have an account?{" "}
-              <span onClick={toggleForm}>Login</span>
+              Already have an account? <span onClick={toggleMode}>Login</span>
             </>
           )}
         </ToggleLink>
+        <button onClick={onClose}>Close</button>
       </PopupContent>
     </PopupWrapper>
   );
