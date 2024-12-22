@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 const PopupWrapper = styled.div`
   position: fixed;
@@ -88,15 +89,55 @@ const ToggleLink = styled.p`
 
 const LoginSignupPopup = ({ onClose }) => {
   const [isLogin, setIsLogin] = useState(true);
+  const [formData, setFormData] = useState({ email: "", password: "", name: "" });
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const toggleMode = () => {
+    setIsLogin(!isLogin);
+    setFormData({ email: "", password: "", name: "" });
+    setErrorMessage("");
+  };  
 
   const toggleForm = () => {
     setIsLogin((prev) => !prev);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your login/signup logic here
-    console.log("Form submitted");
+    try {
+      if (isLogin) {
+        // Login request
+        const response = await axios.post("http://localhost:5000/api/auth/login", {
+          email: formData.email,
+          password: formData.password,
+        });
+
+        const token = response.data.token; // JWT token
+        localStorage.setItem("token", token); // Store token in localStorage
+        onClose(); // Close popup
+      } else {
+        // Sign-up request
+        await axios.post("http://localhost:5000/api/auth/signup", {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+        });
+
+        alert("Sign-up successful! Please log in.");
+        toggleMode(); // Switch to login mode after sign-up
+      }
+    } catch (error) {
+      const errorMsg =
+        error.response && error.response.data && error.response.data.message
+          ? error.response.data.message
+          : "Something went wrong. Please try again.";
+      setErrorMessage(errorMsg);
+    }
   };
 
   return (
