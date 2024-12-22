@@ -10,7 +10,7 @@ const reportRoutes = require('./routes/report');
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000" }));   //Frontend URL
 app.use(bodyParser.json());
 
 // Swagger Configuration
