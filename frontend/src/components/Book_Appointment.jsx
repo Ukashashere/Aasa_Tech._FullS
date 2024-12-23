@@ -3,6 +3,7 @@ import "../styles/Book_Appointment.scss";
 import { BsSearch } from "react-icons/bs";
 import { IoLocationSharp } from "react-icons/io5";
 import { LiaAddressCardSolid } from "react-icons/lia";  /* actual-- vaadin:health-card */
+import axios from "axios";
 
 // Import images
 import image1 from "../Assets/image1.png";
@@ -15,17 +16,17 @@ import image7 from "../Assets/image7.png";
 import image8 from "../Assets/image8.png";
 
 
-function IconInput({ children, placeholder, type}) {    /* Ye Icon & Input at input Area */
+function IconInput({ children, placeholder, type, value, onChange }) {    /* Ye Icon & Input at input Area */
   return(
     <div className="wrap">
       <div className="icon-wrap">{children}</div>
-      <input type={type} placeholder={placeholder} />
+      <input type={type} placeholder={placeholder} value={value} onChange={onChange} />
     </div>
   )
 }
-function ButtonIconInput({ children, text}) {    /* Ye Button pe Icon and Text*/
+function ButtonIconInput({ children, text, onClick }) {    /* Ye Button pe Icon and Text*/
   return(
-    <div className="button-wrap">
+    <div className="button-wrap" onClick={onClick}>
       <div className="button-icon-wrap">{children}</div>
       <span className="button-text">{text}</span>
     </div>  
