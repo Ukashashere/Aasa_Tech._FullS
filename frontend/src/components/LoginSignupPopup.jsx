@@ -114,7 +114,7 @@ const LoginSignupPopup = ({ onClose }) => {
     try {
       if (isLogin) {
         // Login request
-        const response = await axios.post("http://localhost:5000/api/auth/login", {
+        const response = await axios.post("http://localhost:5000/auth/login", {
           usernameOrEmail: formData.usernameOrEmail,
           password: formData.password,
         });
@@ -124,7 +124,7 @@ const LoginSignupPopup = ({ onClose }) => {
         onClose(); // Close popup
       } else {
         // Sign-up request
-        await axios.post("http://localhost:5000/api/auth/signup", {
+        await axios.post("http://localhost:5000/auth/signup", {
           username: formData.username,
           email: formData.email,
           password: formData.password,

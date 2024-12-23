@@ -1,4 +1,7 @@
 const jwt = require('jsonwebtoken');
+const cors = require('cors');
+app.use(cors());
+
 
 module.exports = (req, res, next) => {
     const token = req.headers.authorization?.split(' ')[1];
