@@ -150,7 +150,7 @@ const LoginSignupPopup = ({ onClose }) => {
           {!isLogin && (
             <input
               type="text"
-              name="username"
+              username="username"
               placeholder="Username"
               value={formData.username}
               onChange={handleInputChange}
@@ -159,7 +159,7 @@ const LoginSignupPopup = ({ onClose }) => {
           )}
           <input
             type="email"
-            name="email"
+            username="email"
             placeholder="Email Address"
             value={formData.email}
             onChange={handleInputChange}
@@ -167,7 +167,7 @@ const LoginSignupPopup = ({ onClose }) => {
           />
           <input
             type="password"
-            name="password"
+            username="password"
             placeholder="Password"
             value={formData.password}
             onChange={handleInputChange}
