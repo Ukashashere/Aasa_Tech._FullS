@@ -115,7 +115,7 @@ const LoginSignupPopup = ({ onClose }) => {
       if (isLogin) {
         // Login request
         const response = await axios.post("http://localhost:5000/auth/login", {
-          usernameOrEmail: formData.usernameOrEmail,
+          usernameOrEmail: formData.email,
           password: formData.password,
         });
 

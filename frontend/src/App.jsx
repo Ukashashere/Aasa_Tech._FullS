@@ -35,11 +35,11 @@ function App() {
   return (
     <div className="App">
       {showPopup && <LoginSignupPopup onClose={closePopup} />}
-      {protectedData ? (
+      {/*{protectedData ? (
         <p>Protected Data: {JSON.stringify(protectedData)}</p>
       ) : (
         <p>Loading protected data...</p>
-      )}
+      )}*/}
       <Navbar />
       <Book_Appointment />
       <Home />         {/*Render, Here we have rendered the imported things*/}
