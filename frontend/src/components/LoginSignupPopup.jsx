@@ -95,17 +95,17 @@ const ErrorMessage = styled.p`
 
 const LoginSignupPopup = ({ onClose }) => {
   const [isLogin, setIsLogin] = useState(true);
-  const [formData, setFormData] = useState({ email: "", password: "", name: "" });
+  const [formData, setFormData] = useState({ email: "", password: "", username: "" });
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { username, value } = e.target;
+    setFormData({ ...formData, [username]: value });
   };
 
   const toggleMode = () => {
     setIsLogin(!isLogin);
-    setFormData({ email: "", password: "", name: "" });
+    setFormData({ email: "", password: "", username: "" });
     setErrorMessage("");
   };
 
@@ -125,7 +125,7 @@ const LoginSignupPopup = ({ onClose }) => {
       } else {
         // Sign-up request
         await axios.post("http://localhost:5000/api/auth/signup", {
-          name: formData.name,
+          username: formData.username,
           email: formData.email,
           password: formData.password,
         });
@@ -150,9 +150,9 @@ const LoginSignupPopup = ({ onClose }) => {
           {!isLogin && (
             <input
               type="text"
-              name="name"
+              name="username"
               placeholder="Username"
-              value={formData.name}
+              value={formData.username}
               onChange={handleInputChange}
               required
             />
