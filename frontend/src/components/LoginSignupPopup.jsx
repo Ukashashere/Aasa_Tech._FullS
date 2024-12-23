@@ -99,8 +99,8 @@ const LoginSignupPopup = ({ onClose }) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleInputChange = (e) => {
-    const { username, value } = e.target;
-    setFormData({ ...formData, [username]: value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const toggleMode = () => {
@@ -150,7 +150,7 @@ const LoginSignupPopup = ({ onClose }) => {
           {!isLogin && (
             <input
               type="text"
-              username="username"
+              name="username"
               placeholder="Username"
               value={formData.username}
               onChange={handleInputChange}
@@ -159,7 +159,7 @@ const LoginSignupPopup = ({ onClose }) => {
           )}
           <input
             type="email"
-            username="email"
+            name="email"
             placeholder="Email Address"
             value={formData.email}
             onChange={handleInputChange}
@@ -167,7 +167,7 @@ const LoginSignupPopup = ({ onClose }) => {
           />
           <input
             type="password"
-            username="password"
+            name="password"
             placeholder="Password"
             value={formData.password}
             onChange={handleInputChange}
