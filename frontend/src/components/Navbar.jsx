@@ -1,7 +1,4 @@
-/* hit ctrl+K then M, then type react, it enables react intillicence*/   /* OR we could've renamed the file to .jsx*/
-/* rafce */      
-
-import React, { useState } from 'react'; /* to use useState hook, important to import this*/
+import React, { useState, useEffect } from 'react';
 import Logo from '../Assets/Logo.png';
 import { BsCart2 } from "react-icons/bs";
 import { HiOutlineBars3 } from "react-icons/hi2";
@@ -20,76 +17,71 @@ import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 
 const Navbar = () => {
-  const [openMenu, setOpenMenu] = useState(false);  /**/ /* this is useState Hook. useState(false): This hook is used to declare a state variable and its setter function. Here, useState is initialized with false. openMenu: This is the state variable that will hold the current state value */
-  const menuOptions = [     /* menuOptions: This is an array of objects representing the options in the menu.*/
-    {
-      text: "List your practice ",
-      icon: <HomeIcon />,
-    },
-    {
-      text: "For Employers ",
-      icon: <InfoIcon />,
-    },
-    {
-      text: "Courses ",
-      icon: <CommentRoundedIcon />,
-    },
-    {
-      text: "Books ",
-      icon: <PhoneRoundedIcon />,
-    },
-    {
-      text: "Speakers ",
-      icon: <ShoppingCartRoundedIcon />,
-    },
-    {
-      text: "Doctors ",
-      icon: <PhoneRoundedIcon />,
-    },
-    {
-      text: "Login/Signup",
-      icon: <PhoneRoundedIcon />,
-    },
-  ];  
-  return (
-  <nav>                                     {/*These things are the HTML part*/}
-    <div className='nav-logo-container'>
-      <img src={Logo} alt="" />
-    </div>
-    <div className="navbar-links-container" >
-      <a href="">Get Weather</a>  {/*maybe you able to click and hover over these because there is 'href' element attached to it */}
-      <a href="">Precipitation</a>
-      <a href="">Wind Speed</a>
-      <a href="">Humidity</a>
-      <a href="">Air Quality</a>
-      <a href="">Temperature</a>
-      <button className="primary-button">Login/Signup</button>
-    </div>
-    <div className='navbar-menu-container' >   {/**/}
-      <HiOutlineBars3 onClick={() => setOpenMenu(true)} />
-    </div>
-    <Drawer open={openMenu} onClose={() => setOpenMenu(false)}
-    anchor='right'>
-      <Box
-        sx={{ width: 250}}
-        role="presentation"
-        onClick={() => setOpenMenu(false)}
-        onKeyDown={() => setOpenMenu(false)}
-      >
-        <List>
-          {menuOptions.map((item) => (
-            <ListItem key={item.text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText primary={item.text} />
-              </ListItemButton>
-            </ListItem>                                                                                       
-          ))}
-        </List>  
-      </Box>
-    </Drawer>
-  </nav>
-  );
-};                                                                                                                            
+  const [openMenu, setOpenMenu] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
 
-export default Navbar;  
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const email = JSON.parse(atob(token.split('.')[1])).email; // Decode JWT to get email
+      setUserEmail(email);
+    }
+  }, []);
+
+  const menuOptions = [
+    { text: "List your practice ", icon: <HomeIcon /> },
+    { text: "For Employers ", icon: <InfoIcon /> },
+    { text: "Courses ", icon: <CommentRoundedIcon /> },
+    { text: "Books ", icon: <PhoneRoundedIcon /> },
+    { text: "Speakers ", icon: <ShoppingCartRoundedIcon /> },
+    { text: "Doctors ", icon: <PhoneRoundedIcon /> },
+    { text: "Login/Signup", icon: <PhoneRoundedIcon /> },
+  ];
+
+  return (
+    <nav>
+      <div className='nav-logo-container'>
+        <img src={Logo} alt="" />
+      </div>
+      <div className="navbar-links-container">
+        <a href="">Get Weather</a>
+        <a href="">Precipitation</a>
+        <a href="">Wind Speed</a>
+        <a href="">Humidity</a>
+        <a href="">Air Quality</a>
+        <a href="">Temperature</a>
+        <button className="primary-button">
+          {userEmail || "Login/Signup"}
+        </button>
+      </div>
+      <div className='navbar-menu-container'>
+        <HiOutlineBars3 onClick={() => setOpenMenu(true)} />
+      </div>
+      <Drawer
+        open={openMenu}
+        onClose={() => setOpenMenu(false)}
+        anchor="right"
+      >
+        <Box
+          sx={{ width: 250 }}
+          role="presentation"
+          onClick={() => setOpenMenu(false)}
+          onKeyDown={() => setOpenMenu(false)}
+        >
+          <List>
+            {menuOptions.map((item) => (
+              <ListItem key={item.text} disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.text} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+      </Drawer>
+    </nav>
+  );
+};
+
+export default Navbar;
