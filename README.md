@@ -5,7 +5,7 @@
 ## .
 ![Screenshot (1232)](https://github.com/user-attachments/assets/870a001d-5a89-43f6-ab67-8a908e17c2e7)
 ## Signup Feature:
-![Screenshot (1236)](https://github.com/user-attachments/assets/99052e53-0b77-4349-ba11-5844b0fc9d36)
+![Screenshot (1261)](https://github.com/user-attachments/assets/34ca76a6-f605-4d68-996d-57224e0ed769)
 ## Login Feature:
 ![image](https://github.com/user-attachments/assets/8d1b51d8-43f5-4c7f-abdc-04372bd3951c)
 ## Backend FastAPI structure:
