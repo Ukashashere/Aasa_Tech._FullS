@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Logo from '../Assets/Logo.png';
-import { BsCart2 } from "react-icons/bs";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -18,13 +16,17 @@ import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
-  const [userEmail, setUserEmail] = useState('');
+  const [email, setemail] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      const email = JSON.parse(atob(token.split('.')[1])).email; // Decode JWT to get email
-      setUserEmail(email);
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1])); // Decode JWT
+        setemail(payload.email || ''); // Extract email
+      } catch (error) {
+        console.error("Error decoding token:", error);
+      }
     }
   }, []);
 
@@ -40,7 +42,7 @@ const Navbar = () => {
 
   return (
     <nav>
-      <div className='nav-logo-container'>
+      <div className="nav-logo-container">
         <img src={Logo} alt="" />
       </div>
       <div className="navbar-links-container">
@@ -51,10 +53,10 @@ const Navbar = () => {
         <a href="">Air Quality</a>
         <a href="">Temperature</a>
         <button className="primary-button">
-          {userEmail || "Login/Signup"}
+          {email || "Login/Signup"}
         </button>
       </div>
-      <div className='navbar-menu-container'>
+      <div className="navbar-menu-container">
         <HiOutlineBars3 onClick={() => setOpenMenu(true)} />
       </div>
       <Drawer
