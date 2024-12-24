@@ -121,6 +121,7 @@ const LoginSignupPopup = ({ onClose }) => {
 
         const token = response.data.token; // JWT token
         localStorage.setItem("token", token); // Store token in localStorage
+        localStorage.setItem("email", formData.email); // Store email in localStorage
         onClose(); // Close popup
       } else {
         // Sign-up request

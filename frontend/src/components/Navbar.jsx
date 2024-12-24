@@ -16,18 +16,11 @@ import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
-  const [email, setemail] = useState('');
+  const [email, setEmail] = useState('');
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      try {
-        const payload = JSON.parse(atob(token.split('.')[1])); // Decode JWT
-        setemail(payload.email || ''); // Extract email
-      } catch (error) {
-        console.error("Error decoding token:", error);
-      }
-    }
+    const storedEmail = localStorage.getItem("email"); // Retrieve email from localStorage
+    setEmail(storedEmail || '');
   }, []);
 
   const menuOptions = [
