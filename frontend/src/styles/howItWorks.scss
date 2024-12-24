@@ -233,6 +233,8 @@
       padding: 1.5rem;
       width: 300px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      word-wrap: break-word;
+      white-space: normal;
 
       .card-content {
         h3 {
@@ -247,6 +249,22 @@
 
         strong {
           color: #333;
+        }
+
+        pre {
+          background-color: #f9f9f9;
+          padding: 0.5rem;
+          border-radius: 4px;
+          overflow-x: auto;
+          max-width: 100%;
+        }
+
+        img {
+          max-width: 100%;
+          height: auto;
+          display: block;
+          margin: 0.5rem 0;
+          border-radius: 4px;
         }
       }
     }

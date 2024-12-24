@@ -42,12 +42,28 @@ const Report = () => {
                     <strong>User:</strong> {log.username}
                   </p>
                   <p>
-                    <strong>Weather Data:</strong>{" "}
-                    {typeof log.weather_data === "object" ? (
-                      <pre>{JSON.stringify(log.weather_data, null, 2)}</pre>
-                    ) : (
-                      log.weather_data
-                    )}
+                    <strong>Weather Data:</strong>
+                    <pre>
+                      {Object.entries(log.weather_data).map(([key, value]) => (
+                        <div key={key}>
+                          <strong>{key}:</strong>{" "}
+                          {Array.isArray(value) ? (
+                            // Render arrays as comma-separated strings
+                            value.map((item, i) => (
+                              <span key={i}>
+                                {item}
+                                {i < value.length - 1 ? ", " : ""}
+                              </span>
+                            ))
+                          ) : typeof value === "object" ? (
+                            // Render nested objects as JSON strings
+                            JSON.stringify(value, null, 2)
+                          ) : (
+                            value
+                          )}
+                        </div>
+                      ))}
+                    </pre>
                   </p>
                   <p>
                     <strong>Timestamp:</strong>{" "}
