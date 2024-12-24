@@ -195,3 +195,65 @@
     }
   }
 }
+
+.report {
+  padding: 2rem;
+
+  .header-button {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    .fetch-report-button {
+      padding: 1rem 2rem;
+      font-size: 1.5rem;
+      background-image: linear-gradient(43deg, #1173B3 0%, #840dbf 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+
+      &:hover {
+        background-image: linear-gradient(43deg, #840dbf 0%, #1173B3 100%);
+      }
+    }
+  }
+
+  .report-logs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+
+    .card {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1.5rem;
+      width: 300px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+      .card-content {
+        h3 {
+          font-size: 1.25rem;
+          margin-bottom: 0.5rem;
+        }
+
+        p {
+          margin: 0.25rem 0;
+          color: #555;
+        }
+
+        strong {
+          color: #333;
+        }
+      }
+    }
+
+    .no-logs {
+      font-size: 1.25rem;
+      color: #666;
+    }
+  }
+}
