@@ -4,10 +4,18 @@
 ![image](https://github.com/user-attachments/assets/a97e1481-f859-4fd2-b967-f14383d34eee)
 ## .
 ![Screenshot (1232)](https://github.com/user-attachments/assets/870a001d-5a89-43f6-ab67-8a908e17c2e7)
-## Signup Feature:
-![Screenshot (1261)](https://github.com/user-attachments/assets/34ca76a6-f605-4d68-996d-57224e0ed769)
 ## Login Feature:
 ![image](https://github.com/user-attachments/assets/8d1b51d8-43f5-4c7f-abdc-04372bd3951c)
+## Signup Feature:
+![Screenshot (1261)](https://github.com/user-attachments/assets/34ca76a6-f605-4d68-996d-57224e0ed769)
+## Weather Search:
+![Screenshot (1264)](https://github.com/user-attachments/assets/4bf1af89-c74a-4c72-afcb-5c9c723e791e)
+## Weather Search Report Feature:
+![Screenshot (1279)](https://github.com/user-attachments/assets/0b4486f1-0e21-450d-ba74-223ac33c9231)
+## .
+![Screenshot (1280)](https://github.com/user-attachments/assets/9650a4ad-a46f-47fb-8ccc-b95d09679c03)
+## Ending Footer:
+![Screenshot (1281)](https://github.com/user-attachments/assets/9c020958-9f66-4917-84fb-ca023b6c6b12)
 ## Backend FastAPI structure:
 ![Screenshot (1198)](https://github.com/user-attachments/assets/320c1a9d-93a8-4790-88a7-71238d2db7df)
 ## .
