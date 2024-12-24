@@ -34,7 +34,7 @@ function App() {
 
   return (
     <div className="App">
-      {showPopup && <LoginSignupPopup onClose={closePopup} />}
+      {/*{showPopup && <LoginSignupPopup onClose={closePopup} />}*/}
       {/*{protectedData ? (
         <p>Protected Data: {JSON.stringify(protectedData)}</p>
       ) : (

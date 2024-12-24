@@ -95,7 +95,7 @@ const ErrorMessage = styled.p`
 
 const LoginSignupPopup = ({ onClose, onLogin }) => {
   const [isLogin, setIsLogin] = useState(true);
-  const [formData, setFormData] = useState({ usernameOrEmail: "", password: "", username: "" });
+  const [formData, setFormData] = useState({ usernameOrEmail: "", password: "", username: "", email: "" });
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleInputChange = (e) => {
