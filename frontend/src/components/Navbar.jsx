@@ -13,15 +13,25 @@ import InfoIcon from "@mui/icons-material/Info";
 import CommentRoundedIcon from "@mui/icons-material/CommentRounded";
 import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
+import LoginSignupPopup from './LoginSignupPopup';
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [email, setEmail] = useState('');
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+  // Load email from localStorage on page load
   useEffect(() => {
-    const storedEmail = localStorage.getItem("email"); // Retrieve email from localStorage
+    const storedEmail = localStorage.getItem("email");
     setEmail(storedEmail || '');
   }, []);
+
+  // Function to handle login and update email state
+  const handleLogin = (email) => {
+    setEmail(email); // Update email state immediately
+    localStorage.setItem("email", email); // Save email to localStorage
+    setIsPopupOpen(false); // Close the login/signup popup
+  };
 
   const menuOptions = [
     { text: "List your practice ", icon: <HomeIcon /> },
@@ -45,7 +55,7 @@ const Navbar = () => {
         <a href="">Humidity</a>
         <a href="">Air Quality</a>
         <a href="">Temperature</a>
-        <button className="primary-button">
+        <button className="primary-button" onClick={() => setIsPopupOpen(true)}>
           {email || "Login/Signup"}
         </button>
       </div>
@@ -75,6 +85,12 @@ const Navbar = () => {
           </List>
         </Box>
       </Drawer>
+      {isPopupOpen && (
+        <LoginSignupPopup
+          onClose={() => setIsPopupOpen(false)}
+          onLogin={handleLogin} // Pass the handleLogin function
+        />
+      )}
     </nav>
   );
 };

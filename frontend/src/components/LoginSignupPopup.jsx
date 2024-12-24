@@ -93,7 +93,7 @@ const ErrorMessage = styled.p`
   text-align: center;
 `;
 
-const LoginSignupPopup = ({ onClose }) => {
+const LoginSignupPopup = ({ onClose, onLogin }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({ usernameOrEmail: "", password: "", username: "" });
   const [errorMessage, setErrorMessage] = useState("");
@@ -115,14 +115,14 @@ const LoginSignupPopup = ({ onClose }) => {
       if (isLogin) {
         // Login request
         const response = await axios.post("http://localhost:5000/auth/login", {
-          usernameOrEmail: formData.email,
+          usernameOrEmail: formData.usernameOrEmail,
           password: formData.password,
         });
 
         const token = response.data.token; // JWT token
         localStorage.setItem("token", token); // Store token in localStorage
-        localStorage.setItem("email", formData.email); // Store email in localStorage
-        onClose(); // Close popup
+        localStorage.setItem("email", formData.usernameOrEmail); // Store email/username in localStorage
+        onLogin(formData.usernameOrEmail); // Update Navbar with the logged-in email/username
       } else {
         // Sign-up request
         await axios.post("http://localhost:5000/auth/signup", {
@@ -136,9 +136,7 @@ const LoginSignupPopup = ({ onClose }) => {
       }
     } catch (error) {
       const errorMsg =
-        error.response && error.response.data && error.response.data.message
-          ? error.response.data.message
-          : "Something went wrong. Please try again.";
+        error.response?.data?.message || "Something went wrong. Please try again.";
       setErrorMessage(errorMsg);
     }
   };
@@ -148,7 +146,19 @@ const LoginSignupPopup = ({ onClose }) => {
       <PopupContent>
         <Title>{isLogin ? "Welcome Back!" : "Create an Account"}</Title>
         <Form onSubmit={handleSubmit}>
-          {!isLogin && (
+          {isLogin ? (
+            // Show 'usernameOrEmail' input only for login
+            <input
+              type="text"
+              name="usernameOrEmail"
+              placeholder="Username or Email"
+              value={formData.usernameOrEmail}
+              onChange={handleInputChange}
+              required
+            />
+          ) : (
+            // Show separate 'username' and 'email' fields for signup
+            <>
             <input
               type="text"
               name="username"
@@ -157,15 +167,16 @@ const LoginSignupPopup = ({ onClose }) => {
               onChange={handleInputChange}
               required
             />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+            />
+          </>
           )}
-          <input
-            type="email"
-            name="email"
-            placeholder="Email Address"
-            value={formData.email}
-            onChange={handleInputChange}
-            required
-          />
           <input
             type="password"
             name="password"
@@ -195,3 +206,5 @@ const LoginSignupPopup = ({ onClose }) => {
 };
 
 export default LoginSignupPopup;
+
+
