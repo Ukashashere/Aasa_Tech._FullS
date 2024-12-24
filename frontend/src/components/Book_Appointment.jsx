@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/Book_Appointment.scss";
 import { BsSearch } from "react-icons/bs";
 import { IoLocationSharp } from "react-icons/io5";
-import { LiaAddressCardSolid } from "react-icons/lia";  /* actual-- vaadin:health-card */
 import axios from "axios";
 
 // Import images
@@ -15,27 +14,49 @@ import image6 from "../Assets/image6.png";
 import image7 from "../Assets/image7.png";
 import image8 from "../Assets/image8.png";
 
-
-function IconInput({ children, placeholder, type, value, onChange }) {    /* Ye Icon & Input at input Area */
-  return(
+function IconInput({ children, placeholder, type, value, onChange }) {
+  return (
     <div className="wrap">
       <div className="icon-wrap">{children}</div>
       <input type={type} placeholder={placeholder} value={value} onChange={onChange} />
     </div>
-  )
+  );
 }
-function ButtonIconInput({ children, text, onClick }) {    /* Ye Button pe Icon and Text*/
-  return(
+
+function ButtonIconInput({ children, text, onClick }) {
+  return (
     <div className="button-wrap" onClick={onClick}>
       <div className="button-icon-wrap">{children}</div>
       <span className="button-text">{text}</span>
-    </div>  
-  )
+    </div>
+  );
 }
 
 const Book_Appointment = () => {
+  const [city, setCity] = useState("");
+  const [weatherData, setWeatherData] = useState(null);
+  const [error, setError] = useState(null);
+
+  const fetchWeather = async () => {
+    if (!city) {
+      setError("Please enter a city.");
+      return;
+    }
+
+    try {
+      setError(null);
+      const response = await axios.get(`http://localhost:5000/weather/${city}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+      setWeatherData(response.data);
+    } catch (err) {
+      console.error("Error fetching weather data:", err.response?.data || err.message);
+      setError(err.response?.data?.error || "Error fetching weather data.");
+    }
+  };
+
   useEffect(() => {
-    // No additional functionality needed; animation handled in CSS.
+    // Additional functionality (if needed) can be added here.
   }, []);
 
   return (
@@ -58,24 +79,44 @@ const Book_Appointment = () => {
 
       {/* Right Side: "Book an appointment" Text */}
       <div className="Book_Appointment-text">
-        <h1>Get your Weather Forcast<span> anytime anywhere!</span></h1>
-        <p>Weather Forcast, Rain Prediction, AQI at your fingertips.</p>
+        <h1>
+          Get your Weather Forecast<span> anytime anywhere!</span>
+        </h1>
+        <p>Weather Forecast, Rain Prediction, AQI at your fingertips.</p>
       </div>
-
 
       {/* Search Bar */}
       <div className="search-bar">
-        <div className="input-second">               {/* Location Walla Icon and Input */}
-          <IconInput type="text" placeholder="  City, state, zipcode..">
+        <div className="input-second">
+          <IconInput
+            type="text"
+            placeholder="  City, state, zipcode.."
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+          >
             <IoLocationSharp />
           </IconInput>
         </div>
         <div>
-          <ButtonIconInput text="Find now">      {/* Yaha Button with Safeed Search Symbol and Input */}
+          <ButtonIconInput text="Find now" onClick={fetchWeather}>
             <BsSearch />
           </ButtonIconInput>
         </div>
       </div>
+
+      {/* Display Weather Data or Error */}
+      {error && <p className="error">{error}</p>}
+      {weatherData && (
+        <div className="weather-data">
+          <img src={weatherData.current.weather_icons} alt="Weather Icon"></img> 
+          <h3>Weather in {city}:</h3>
+          <p>Temperature: {weatherData.current.temperature}°C</p>
+          <p>Weather Description: {weatherData.current.weather_descriptions[0]}</p>
+          <p>Humidity: {weatherData.current.humidity}%</p>
+          <p>Country: {weatherData.location.country}</p>
+          <p>Observed at: {weatherData.current.observation_time}</p>
+        </div>
+      )}
     </section>
   );
 };
